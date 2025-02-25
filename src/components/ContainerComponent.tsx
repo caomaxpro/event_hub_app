@@ -6,12 +6,14 @@ import {
   ViewStyle,
   View,
   ImageSourcePropType,
+  SafeAreaView,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSettingContext} from '@src/context/SettingContext';
 import {SCREEN_HEIGHT, SCREEN_WIDTH} from '@src/utils/appInfo';
 
 import Animated, {useAnimatedStyle} from 'react-native-reanimated';
+// import {createAnimatedComponent} from 'react-native-reanimated/lib/typescript/createAnimatedComponent';
 
 type ScreenComponentProps = ViewProps & {
   children?: React.ReactNode;
@@ -19,8 +21,10 @@ type ScreenComponentProps = ViewProps & {
   contentStyle?: StyleProp<ViewStyle>;
   bgImage?: number | null;
   displayBackgroundImage?: boolean;
-  extendContent?: boolean;
+  animatedStyle?: any;
 };
+
+const AnimatedSafeAreaView = Animated.createAnimatedComponent(SafeAreaView);
 
 export default function CustomContainerComponent({
   children,
@@ -28,23 +32,17 @@ export default function CustomContainerComponent({
   contentStyle,
   bgImage = null,
   displayBackgroundImage = false,
-  extendContent = false,
+  animatedStyle,
   ...props
 }: ScreenComponentProps) {
   const {state} = useSettingContext();
   const theme = state.theme;
   const backgroundImage = bgImage ?? theme.bgImage;
 
-  const animatedContainerStyle = useAnimatedStyle(() => {
-    return {
-      position: extendContent ? 'absolute' : 'static',
-      height: extendContent ? SCREEN_HEIGHT : 'auto',
-      top: 0,
-    };
-  });
+  const animatedContainerStyle = animatedStyle ?? {};
 
   return (
-    <Animated.View
+    <AnimatedSafeAreaView
       style={[
         styles.default_container,
         {borderColor: theme.textOnBG},
@@ -62,7 +60,7 @@ export default function CustomContainerComponent({
       ) : (
         <View style={[styles.content, contentStyle]}>{children}</View>
       )}
-    </Animated.View>
+    </AnimatedSafeAreaView>
   );
 }
 
@@ -71,8 +69,8 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 0,
     overflow: 'scroll',
-    borderWidth: 3,
-    borderRadius: 5,
+    // borderWidth: 3,
+    // borderRadius: 5,
     backgroundColor: 'transparent',
   },
 

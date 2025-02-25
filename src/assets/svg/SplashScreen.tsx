@@ -6,10 +6,11 @@ import Svg, {
   Path,
   Defs,
   ClipPath,
+  SvgProps,
 } from 'react-native-svg';
 /* SVGR has dropped some elements not supported by react-native-svg: div, filter */
 
-export const SplashScreen = () => (
+export const SplashScreen: React.FC<SvgProps> = () => (
   <Svg width={375} height={812} viewBox="0 0 375 812" fill="none">
     <G opacity={0.7} filter="url(#filter0_f_727_3)">
       <G

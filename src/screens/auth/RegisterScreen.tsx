@@ -1,12 +1,9 @@
 // LoginScreen.tsx
 import React, {useState} from 'react';
 import {View, Text, Button, StyleSheet} from 'react-native';
-import {StackScreenProps} from '@react-navigation/stack';
+import {Header, StackScreenProps} from '@react-navigation/stack';
 import ScreenComponent from '@src/components/ScreenComponent';
-import {
-  CustomTextInputComponent,
-  EmailInputComponent,
-} from '@src/components/CustomInputField';
+import {CustomTextInputComponent} from '@src/components/CustomInputField';
 import {useEmailInput, usePasswordInput} from '@src/hooks/useInputField';
 import {Icon} from '@src/components/Icon';
 import CustomIcon from '@src/components/CustomIcon';
@@ -18,17 +15,17 @@ import CustomText from '@src/components/CustomText';
 import {EventHubLogo} from '@src/assets/svg/EventHub';
 import {OtherLoginOptionComponent} from '@src/components/OtherLoginOption';
 import {CircularRightArrow} from '@src/assets/svg/CircularRightArrow';
+import HeaderComponent from '@src/components/HeaderComponent';
 import ArrowButton from '@src/components/ArrowButton';
-import {useLoginForm} from '@src/hooks/useLoginForm';
-import PasswordInputComponent from '@src/components/PasswordInputComponent';
 // import {AuthStackParamList} from '@src/navigation/AuthNavigation';
 
 // type LoginScreenProps = StackScreenProps<AuthStackParamList, 'LoginScreen'> & {
 //   setUser: React.Dispatch<React.SetStateAction<boolean>>;
 // };
 
-export default function LoginScreen() {
-  const {emailField, passwordField} = useLoginForm();
+export default function RegisterScreen() {
+  const emailInputField = useEmailInput('');
+  const passwordInputField = usePasswordInput('');
 
   const {state} = useSettingContext();
 
@@ -36,53 +33,88 @@ export default function LoginScreen() {
 
   return (
     <ScreenComponent
-      //   contentStyle={{justifyContent: 'center'}}
+      //   contentStyle={{justifyContent: 'space-evenly'}}
       displayBackgroundImage={true}>
-      <CustomContainerComponent customStyle={{marginBottom: 50}}>
-        <EventHubLogo />
-      </CustomContainerComponent>
+      <HeaderComponent />
 
       <CustomText
         textWeight="medium"
         customStyle={{
           fontSize: 24,
           paddingLeft: 1,
+          //   alignSelf: 'flex-start',
           width: 317,
+          //   borderWidth: 2,
           marginBottom: 20,
         }}>
-        Sign in
+        Sign Up
       </CustomText>
+      <CustomTextInputComponent
+        preIcon={
+          <CustomIcon
+            type="AntDesign"
+            name="mail"
+            size={22}
+            color={state.theme.inputBorder}
+          />
+        }
+        textContentType="emailAddress"
+        inputField={emailInputField}
+        placeholder="abc@email.com"
+      />
+      <CustomTextInputComponent
+        preIcon={
+          <CustomIcon
+            type="AntDesign"
+            name="mail"
+            size={22}
+            color={state.theme.inputBorder}
+          />
+        }
+        textContentType="emailAddress"
+        inputField={emailInputField}
+        placeholder="abc@email.com"
+      />
 
-      <EmailInputComponent inputField={emailField} />
-      <PasswordInputComponent passwordField={passwordField} />
+      <CustomTextInputComponent
+        // containerStyle={}
+        preIcon={
+          <CustomIcon
+            type="Feather"
+            name="lock"
+            size={22}
+            color={state.theme.inputBorder}
+          />
+        }
+        textContentType="password"
+        inputField={passwordInputField}
+        password={true}
+        placeholder="Your password"
+      />
 
-      <CustomContainerComponent
-        customStyle={{width: 317}}
-        contentStyle={{justifyContent: 'space-between'}}>
-        <CustomToggle
-          value={isRememberUser}
-          setValue={setRememberUser}
-          sideMessage="Remember Me"
-        />
+      <CustomTextInputComponent
+        // containerStyle={}
+        preIcon={
+          <CustomIcon
+            type="Feather"
+            name="lock"
+            size={22}
+            color={state.theme.inputBorder}
+          />
+        }
+        textContentType="password"
+        inputField={passwordInputField}
+        password={true}
+        placeholder="Your password"
+      />
 
-        <CustomButton
-          customStyle={{
-            width: 'auto',
-            height: 'auto',
-            padding: 0,
-            backgroundColor: 'transparent',
-          }}>
-          <CustomText customStyle={{fontSize: 14}}>Forgot Password?</CustomText>
-        </CustomButton>
-      </CustomContainerComponent>
-
-      <ArrowButton label="SIGN IN" onPress={() => {}} />
+      <ArrowButton label="SIGN UP" onPress={() => {}} />
 
       <OtherLoginOptionComponent />
 
-      <CustomContainerComponent customStyle={{marginTop: 20}}>
+      <CustomContainerComponent customStyle={{marginTop: 5}}>
         <CustomText customStyle={styles.signUpText}>
-          Don't have an account?{' '}
+          Already have an account?{' '}
         </CustomText>
         <CustomButton
           customStyle={{
@@ -95,7 +127,7 @@ export default function LoginScreen() {
           }}
           onPress={() => {}}>
           <CustomText textWeight="thin" customStyle={styles.signUpLink}>
-            Sign Up
+            Sign In
           </CustomText>
         </CustomButton>
       </CustomContainerComponent>
