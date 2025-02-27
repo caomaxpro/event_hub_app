@@ -10,10 +10,10 @@ import {
 import {useEmailInput, usePasswordInput} from '@src/hooks/useInputField';
 import {Icon} from '@src/components/Icon';
 import CustomIcon from '@src/components/CustomIcon';
+import CustomButton from '@src/components/ButtonComponent';
 import {useSettingContext} from '@src/context/SettingContext';
 import CustomContainerComponent from '@src/components/ContainerComponent';
 import CustomToggle from '@src/components/CustomToggle';
-import CustomButton from '@src/components/ButtonComponent';
 import CustomText from '@src/components/CustomText';
 import {EventHubLogo} from '@src/assets/svg/EventHub';
 import {OtherLoginOptionComponent} from '@src/components/OtherLoginOption';

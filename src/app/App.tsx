@@ -27,6 +27,7 @@ import LoginScreen from '@src/screens/auth/LoginScreen';
 import RegisterScreen from '@src/screens/auth/RegisterScreen';
 import VerificationScreen from '@src/screens/auth/VerificationScreen';
 import {ResetPasswordScreen} from '@src/screens/auth/ResetPasswordScreen';
+import BASE_URL from '@src/utils/envVariables';
 
 type user = {
   email: string;
@@ -43,13 +44,15 @@ const user1: user = {
 function App(): React.JSX.Element {
   const [splashScreen, setSplashScreen] = useState<boolean>(true);
 
-  //   useEffect(() => {
-  //     const timer = setTimeout(() => {
-  //       setSplashScreen(false);
-  //     }, 2000);
+  useEffect(() => {
+    console.log(BASE_URL);
 
-  //     return () => clearTimeout(timer);
-  //   });
+    //   const timer = setTimeout(() => {
+    //     setSplashScreen(false);
+    //   }, 2000);
+
+    //   return () => clearTimeout(timer);
+  });
 
   return (
     <ScreenComponent>
@@ -60,6 +63,7 @@ function App(): React.JSX.Element {
       />
 
       <ResetPasswordScreen />
+
       {/* <VerificationScreen /> */}
       {/* <RegisterScreen /> */}
       {/* <LoginScreen /> */}

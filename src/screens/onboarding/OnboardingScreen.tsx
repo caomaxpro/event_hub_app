@@ -1,11 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import ScreenComponent from '@src/components/ScreenComponent';
+import ScreenComponent from 'src/components/ScreenComponent';
 import {Image} from 'react-native-reanimated/lib/typescript/Animated';
 import Animated from 'react-native-reanimated';
 import {SCREEN_WIDTH} from '@src/utils/appInfo';
 import CustomContainerComponent from '@src/components/ContainerComponent';
-import CustomText from '@src/components/CustomText';
+import CustomButton from '@src/components/ButtonComponent';
 import OnboardingSkip from '@src/components/OnboardingSkip';
 import {StackScreenProps} from '@react-navigation/stack';
 
